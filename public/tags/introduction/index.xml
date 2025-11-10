@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introduction on Adnan Saliq</title>
+    <link>http://localhost:1313/tags/introduction/</link>
+    <description>Recent content in Introduction on Adnan Saliq</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2025 Adnan Saliq</copyright>
+    <lastBuildDate>Mon, 10 Nov 2025 01:24:21 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/introduction/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My First Article</title>
+      <link>http://localhost:1313/posts/my-first-article/</link>
+      <pubDate>Mon, 10 Nov 2025 01:24:21 +0530</pubDate>
+      <guid>http://localhost:1313/posts/my-first-article/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

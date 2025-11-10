@@ -1,0 +1,24 @@
+languageCode = "en"
+languageName = "English"
+languageDirection = "ltr"
+weight = 1
+
+title = "Adnan Saliq"
+copyright = "&copy; 2025 Adnan Saliq"
+
+[params]
+  dateFormat = "2 January 2006"
+
+  # mainSections = ["section1", "section2"]
+  description = "Learner, tech enthusiast"
+
+[params.author]
+  name = "Adnan Saliq"
+  image = "img/author.jpg"
+  headline = "Developer & tech enthusiast who loves learning and building stuff"
+  bio = "Integration Engineer | Tech Enthusiast | Lifelong Learner"
+  links = [
+  { email = "mailto:adnansalik@gmail.com.com" },
+  { github = "https://github.com/adnansalik" },
+  { x-twitter = "https://twitter.com/adnaaniii" }
+  ]

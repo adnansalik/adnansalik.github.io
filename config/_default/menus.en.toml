@@ -1,0 +1,29 @@
+# -- Main Menu --
+
+[[main]]
+  name = "Home"
+  pageRef = "/"
+  weight = 1
+
+[[main]]
+  name = "About"
+  pageRef = "/about"
+  weight = 2
+
+[[main]]
+  name = "Blog"
+  pageRef = "/posts"
+  weight = 3
+
+[[main]]
+  identifier = "search"
+  weight = 4
+  [main.params]
+    action = "search"
+
+# add this near the end so it shows on the right
+[[main]]
+  identifier = "appearance"
+  weight = 99
+  [main.params]
+    action = "appearance"     # optional: hide the label and show only icon

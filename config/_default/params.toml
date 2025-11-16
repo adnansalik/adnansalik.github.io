@@ -12,14 +12,12 @@ mainSections = ["posts"]
 
 dateFormat = "02 Jan 2006"
 
-
 fingerprintAlgorithm = "sha256"
 
 [header]
   layout = "basic" # valid options: basic, hamburger, hybrid, custom
   showTitle = false
-[meta]
-  favicon = true
+
 [footer]
   showCopyright = true
   showThemeAttribution = false
@@ -38,7 +36,6 @@ fingerprintAlgorithm = "sha256"
   showBreadcrumbs = true
   showDraftLabel = true
   showEdit = false
-  # editURL = "https://github.com/username/repo/"
   editAppendPath = true
   showHeadingAnchors = true
   showPagination = true
@@ -63,21 +60,3 @@ fingerprintAlgorithm = "sha256"
 
 [taxonomy]
   showTermCount = true
-
-[fathomAnalytics]
-  # site = "ABC12345"
-
-[plausibleAnalytics]
-  # domain = "blog.yoursite.com"
-  # event = ""
-  # script = ""
-
-#[umamiAnalytics]
-#  site = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-#  region = "eu"  # can be either "eu" or "us"
-
-[verification]
-  # google = ""
-  # bing = ""
-  # pinterest = ""
-  # yandex = ""

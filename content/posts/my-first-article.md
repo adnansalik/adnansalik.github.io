@@ -3,7 +3,6 @@ title = 'My First Article'
 draft = false
 date = '2025-11-10T01:24:21+05:30'
 tags = ['introduction','personal']
-showTableOfContents  = true
 description = 'A quick intro to launch my blog/portfolio page'
 +++
 

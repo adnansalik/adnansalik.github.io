@@ -3,7 +3,7 @@ title = 'Weekly Note 50/2025'
 date = '2025-12-14T10:39:06+05:30'
 draft = false
 tags = ['weekly-notes','personal']
-description = 'A relaxing outing followed by busy work'
+summary = 'A relaxing outing followed by busy work'
 +++
 
 <!-- align center and medium sizeed image -->

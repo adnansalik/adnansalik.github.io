@@ -6,7 +6,7 @@ tags = ['weekly-notes','personal']
 summary = 'A relaxing outing followed by busy work'
 +++
 
-<!-- align center and medium sizeed image -->
+<!-- align center and medium sized image -->
 <img src="coconut.jpg" alt="Coconut somewhere near Nandi Hills" style="display:block; margin-left:auto; margin-right:auto; width:50%;" />
 
 ### What happened
@@ -18,7 +18,7 @@ The week started with an outing that my collegues planned, we visited a farm sta
 I had to build a sync service and we were using DynamoDB store data for that project. We used Lambda which was timing out since it was not ideal to make one Lambda run a insertions for large volumes of data. Then I did some research and GPT and found we can use SQS to send notifications to the queue and then trigger concurrent Lambda's which would process message which contain record data for insertion. This worked amazingly well and kept the costs and overhead at a minimum.
 
 ### What I played
-After contemplating a lot I caved in and biught Hades which is rouge-like action RPG which I saw one of my friend play back in college, at the time I did not have the machine which could run it. I love the game, the music, character design, dialogues, in game store and economics all of them are top notch. I really love the fact that the game encouraging us to use different weapon in each run and I found myself enjoying it a lot. say. Although I am yet to beat it but still 10/10 game.
+After contemplating a lot I caved in and bought Hades which is rouge-like action RPG which I saw one of my friend play back in college, at the time I did not have the machine which could run it. I love the game, the music, character design, dialogues, in game store and economics all of them are top notch. I really love the fact that the game encouraging us to use different weapon in each run and I found myself enjoying it a lot. say. Although I am yet to beat it but still 10/10 game.
 
 <img src="hades.png" alt="Hades game screenshot" style="display:block; margin-left:auto; margin-right:auto; width:100%;" />
 

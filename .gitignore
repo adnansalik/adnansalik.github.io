@@ -1,5 +1,15 @@
+# Hugo folders
 public/
-*.DS_Store
+resources/
+.hugo_build.lock
+
+# Operating System files
 .DS_Store
-DS_Store
-.DS_Store
+Thumbs.db
+
+# Frontend / Node (if you ever use it)
+node_modules/
+.sass-cache/
+
+# Development environment
+.env

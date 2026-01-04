@@ -10,12 +10,12 @@ summary = 'Last week of 2025'
 <img src="park.jpg" alt="Park" style="display:block; margin-left:auto; margin-right:auto; width:50%;" />
 
 ### What happened
-This week was eventful and calming, I met and celebrated Christmas Eve with friends which was very refreshing and motivating. We prepared sandwiches and dessert, played a card game called 'Kaboo', spent the next morning walking around the lake where I learned about silver oak tree thanks to my flora obessed friend. Work has calmed down a but it was my manager's last working so my team had a farewell call to thank him for being an amazing leader and even better human. I learned a lot from him.
+This week was eventful and calming, I met and celebrated Christmas Eve with friends which was very refreshing and motivating. We prepared sandwiches and dessert, played a card game called 'Kaboo', spent the next morning walking around the lake where I learned about silver oak tree thanks to my flora obessed friend. Work calmed down but it was my manager's last working so my team had a farewell call to thank him for being an amazing leader and even better human. I learned a lot from him.
 
 <img src="thumb.jpg" alt="Duck" style="display:block; margin-left:auto; margin-right:auto; width:50%;" />
 
 ### What I learned
-This week I didn't do much but got to know how Adjacency Matrix and Adjacency List's are populated to store Graph Data Structure and how space complexity in Adj. Matrix might be larger since we store the elements in a 2D matrix and even if the edges doesn't exist it still sits taking up that space, for that reason if the Graph is dense with most of the nodes touching all the edges then Matrix makes more sense. Other than that I optimised my 8 year old machine for which I have written a separate blog [here](https://adnansaliq.in/posts/blogs/20251228).
+This week I didn't do much but got to know how Adjacency Matrix and Adjacency List's are populated to store Graph Data Structure and how space complexity in Adj. Matrix might be larger since we store the elements in a 2D matrix and even if the edges doesn't exist it still sits taking up that space, for that reason if the Graph is dense with most of the nodes touching all the edges then Matrix makes more sense. Other than that I optimised my 8 year old machine for which I have written a separate blog [here](https://adnansaliq.in/posts/blogs/how-i-revived-my-8-yr-old-machine).
 
 ### What I played
 Been playing hades for the past week now, I have beat the game but it requires us to beat the boss multiple times to progress in main story which is fun since we can now increase the difficulty and all the other Gods have updated lore and dialgoues, I am amazed at how each interaction with te characters every time is unique and fresh,truly a good game.

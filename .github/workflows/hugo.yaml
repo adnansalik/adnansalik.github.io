@@ -4,6 +4,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    - cron: '30 18 * * *' # At 18:30 IST every day
 permissions:
   contents: read
   pages: write

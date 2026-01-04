@@ -1,23 +1,28 @@
 # -- Main Menu --
 
 [[main]]
-  name = "Home"
+  name = "home"
   pageRef = "/"
   weight = 1
 
 [[main]]
-  name = "About"
+  name = "about"
   pageRef = "/about"
   weight = 2
 
 [[main]]
-  name = "Blog"
+  name = "posts"
   pageRef = "/posts"
   weight = 3
 
 [[main]]
-  identifier = "search"
+  name = "blogroll"
+  pageRef = "/fav-blogs"
   weight = 4
+
+[[main]]
+  identifier = "search"
+  weight = 98
   [main.params]
     action = "search"
 

@@ -15,12 +15,13 @@ copyright = "&copy; 2025 Adnan Saliq"
 [params.author]
   name = "Adnan Saliq"
   image = "img/author.jpg"
-  headline = "Developer & tech enthusiast who loves learning and building stuff"
-  bio = "Integration Engineer | Tech Enthusiast | Lifelong Learner"
+  headline = "taking life one step at a time  "
+  bio = "Engineer | Enthusiast | Learner"
   links = [
   { email = "mailto:adnansalik@gmail.com.com" },
   { github = "https://github.com/adnansalik" },
   { x-twitter = "https://twitter.com/adnaaniii" },
   { linkedin = "https://www.linkedin.com/in/adnan-saliq-24134310a/" },
-  {goodreads = "https://www.goodreads.com/user/show/173446477-adnan-saliq" }
+  { goodreads = "https://www.goodreads.com/user/show/173446477-adnan-saliq" },
+  { mastodon = "https://mastodon.social/@adnaaniii" }
   ]

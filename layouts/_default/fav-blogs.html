@@ -89,7 +89,8 @@
     <section class="blog-entry">
       <h2>{{ .name }}</h2>
       
-      {{ $feed := resources.GetRemote .url }}
+      {{ $options := dict "headers" (dict "User-Agent" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36") }}
+      {{ $feed := resources.GetRemote .url $options }}
       {{ with $feed }}
         {{ $data := . | transform.Unmarshal }}
         {{/* Handle Atom (.entry) or RSS (.channel.item) */}}

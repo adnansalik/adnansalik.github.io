@@ -34,21 +34,29 @@ jobs:
       - name: Pre-download feeds
         run: |
           mkdir -p assets/feeds
-          # Use Python to parse TOML and output name|url pairs
           python3 -c '
           import tomllib
-          with open("data/favs.toml", "rb") as f:
-              data = tomllib.load(f)
-              for blog in data.get("blogs", []):
-                  print(f"{blog[\"name\"]}|{blog[\"url\"]}")
-          ' | while RR= read -r line; do
-            NAME=$(echo "$line" | cut -d'|' -f1 | tr '[:upper:]' '[:lower:]' | tr -dc 'a-z0-9')
-            URL=$(echo "$line" | cut -d'|' -f2)
+          import sys
+          try:
+              with open("data/favs.toml", "rb") as f:
+                  data = tomllib.load(f)
+                  for blog in data.get("blogs", []):
+                      # Print as "name|url" to stdout
+                      sys.stdout.write(blog["name"] + "|" + blog["url"] + "\n")
+          except Exception as e:
+              print(f"Error: {e}", file=sys.stderr)
+              sys.exit(1)
+          ' | while IFS="|" read -r NAME URL; do
+            if [ -z "$NAME" ]; then continue; fi
             
-            echo "Fetching $NAME from $URL..."
+            # Slugify: remove spaces/special chars to match Hugo's logic
+            SLUG=$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | tr -dc 'a-z0-9')
             
+            echo "Fetching $NAME ($SLUG) from $URL..."
+            
+            # Use curl with a browser-like User-Agent
             curl -L -s -f -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" \
-              "$URL" -o "assets/feeds/${NAME}.xml" || echo "--> Failed to download $NAME"
+              "$URL" -o "assets/feeds/${SLUG}.xml" || echo "--> Failed to download $NAME"
           done
       - name: Setup Go
         uses: actions/setup-go@v5

@@ -1,5 +1,5 @@
 +++
-title = 'Weekly Note 50/2025'
+title = 'weekly note #50 (2025)'
 date = '2025-12-14T10:39:06+05:30'
 draft = false
 tags = ['weekly-notes','personal']

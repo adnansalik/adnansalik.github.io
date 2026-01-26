@@ -1,5 +1,5 @@
 +++
-title = 'Weekly Note 01/2026'
+title = 'weekly note #01 (2026)'
 tags = ['personal','weekly-notes']
 date = '2026-01-04T22:33:00+05:30'
 summary = 'Catching up with friends and Happy New Year'

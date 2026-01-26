@@ -1,11 +1,11 @@
-# [[blogs]]
-# name = "Ashish Ranjan"
-# url = "https://ashishinthewild.substack.com/feed"
+[[blogs]]
+name = "Ashish Ranjan"
+url = "https://ashishinthewild.substack.com/feed"
 
-# [[blogs]]
-# name = "Sathyajith Bhat"
-# url = "https://sathyabh.at/index.xml"
+[[blogs]]
+name = "Sathyajith Bhat"
+url = "https://sathyabh.at/index.xml"
 
-# [[blogs]]
-# name = "Abhinav Sarkar"
-# url = "https://abhinavsarkar.net/notes/feed.atom"
+[[blogs]]
+name = "Abhinav Sarkar"
+url = "https://abhinavsarkar.net/notes/feed.atom"

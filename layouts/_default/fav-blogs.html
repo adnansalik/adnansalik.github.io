@@ -1,82 +1,16 @@
 {{ define "main" }}
 <style>
-  .fav-blogs-page { 
-    max-width: 700px; /* Slightly narrower for a centered, clean feel */
-    margin: 0 auto; 
-    padding: 2rem 1rem; 
-    line-height: 1.5;
-    color: currentColor; /* Inherits theme text color for dark mode */
-  }
-
-  .header h1 {
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-  }
-
-  .page-intro {
-    margin-bottom: 2.5rem;
-    font-size: 0.95rem;
-    opacity: 0.8;
-  }
-
-  .blog-entry { 
-    margin-bottom: 1.5rem; 
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.1); 
-  }
-
-  /* Author Names - High contrast for dark mode */
-  .blog-entry h2 { 
-    color: currentColor; 
-    margin: 0 0 0.4rem 0; 
-    font-size: 1.1rem; /* Slightly smaller, more refined */
-    font-weight: 700;
-    opacity: 0.9;
-  }
-
-  .feed-list { 
-    list-style: none; 
-    padding: 0; 
-    margin: 0;
-  }
-
-  /* Link Highlighting */
-  .feed-link {
-    font-size: 0.95rem; 
-    font-weight: 500;
-    text-decoration: none;
-    color: #3b82f6; /* Modern blue */
-    transition: color 0.2s ease;
-  }
-
-  .feed-link:hover {
-    text-decoration: underline;
-    color: #60a5fa;
-  }
-
-  /* Date Styling */
-  .post-date {
-    display: inline-block;
-    font-size: 0.75rem; 
-    opacity: 0.5;
-    margin-left: 8px; /* Places date next to title if space allows */
-    white-space: nowrap;
-  }
-
-  /* Error/Empty state */
-  .feed-error {
-    font-size: 0.85rem;
-    font-style: italic;
-    opacity: 0.4;
-  }
-
-  footer {
-    margin-top: 3rem;
-    font-size: 0.75rem;
-    opacity: 0.4;
-    text-align: center;
-  }
+  .fav-blogs-page { max-width: 700px; margin: 0 auto; padding: 2rem 1rem; line-height: 1.5; color: currentColor; }
+  .header h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .page-intro { margin-bottom: 2.5rem; font-size: 0.95rem; opacity: 0.8; }
+  .blog-entry { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(128, 128, 128, 0.1); }
+  .blog-entry h2 { color: currentColor; margin: 0 0 0.4rem 0; font-size: 1.1rem; font-weight: 700; opacity: 0.9; }
+  .feed-list { list-style: none; padding: 0; margin: 0; }
+  .feed-link { font-size: 0.95rem; font-weight: 500; text-decoration: none; color: #3b82f6; transition: color 0.2s ease; }
+  .feed-link:hover { text-decoration: underline; color: #60a5fa; }
+  .post-date { display: inline-block; font-size: 0.75rem; opacity: 0.5; margin-left: 8px; white-space: nowrap; }
+  .feed-error { font-size: 0.85rem; font-style: italic; opacity: 0.4; }
+  footer { margin-top: 3rem; font-size: 0.75rem; opacity: 0.4; text-align: center; }
 </style>
 
 <div class="fav-blogs-page">
@@ -89,51 +23,46 @@
     <section class="blog-entry">
       <h2>{{ .name }}</h2>
       
-      {{ $options := dict "headers" (dict "User-Agent" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36") }}
-      {{ $feed := resources.GetRemote .url $options }}
-      {{ with $feed }}
-        {{ $data := . | transform.Unmarshal }}
-        {{/* Handle Atom (.entry) or RSS (.channel.item) */}}
+      {{/* Match the slugify logic from the GitHub Action */}}
+      {{ $slug := .name | lower | replaceRE "[^a-z0-9]" "" }}
+      {{ $filename := printf "feeds/%s.xml" $slug }}
+      {{ $feed := resources.Get $filename }}
+
+      {{ if and $feed (not $feed.Err) }}
+        {{ $data := $feed | transform.Unmarshal }}
         {{ $items := $data.entry | default $data.channel.item }}
         <ul class="feed-list">
         {{ range first 3 $items }}
-            
-            {{/* 1. Extract Title: Handles the map[#text:...] */}}
             {{ $title := "" }}
             {{ if reflect.IsMap .title }}
-            {{ $title = index .title "#text" | default .title.content }}
+                {{ $title = index .title "#text" | default .title.content }}
             {{ else }}
-            {{ $title = .title }}
+                {{ $title = .title }}
             {{ end }}
 
-            {{/* 2. Extract Link: Handles the slice/list of maps with hyphens */}}
             {{ $link := "" }}
             {{ if reflect.IsSlice .link }}
-            {{/* Loop through the links to find the 'alternate' one */}}
-            {{ range .link }}
-                {{ if eq (index . "-rel") "alternate" }}
-                {{ $link = index . "-href" }}
+                {{ range .link }}
+                    {{ if eq (index . "-rel") "alternate" }}
+                        {{ $link = index . "-href" }}
+                    {{ end }}
                 {{ end }}
-            {{ end }}
             {{ else if reflect.IsMap .link }}
-            {{ $link = index . "-href" | default .link.href }}
+                {{ $link = index . "-href" | default .link.href }}
             {{ else }}
-            {{ $link = .link }}
+                {{ $link = .link }}
             {{ end }}
 
-            {{/* Fallback to ID if link is still empty */}}
-            {{ if not $link }}
-            {{ $link = .id }}
-            {{ end }}
+            {{ if not $link }}{{ $link = .id }}{{ end }}
             
             <li class="feed-item">
-            <a href="{{ $link | safeURL }}" class="feed-link" target="_blank" rel="noopener">
-                {{ $title }}
-            </a>
-            <span class="post-date">
-                {{ $date := .published | default .pubDate | default .updated }}
-                {{ if $date }}{{ $date | dateFormat "Jan 2, 2006" }}{{ end }}
-            </span>
+                <a href="{{ $link | safeURL }}" class="feed-link" target="_blank" rel="noopener">
+                    {{ $title }}
+                </a>
+                <span class="post-date">
+                    {{ $date := .published | default .pubDate | default .updated }}
+                    {{ if $date }}{{ $date | dateFormat "Jan 2, 2006" }}{{ end }}
+                </span>
             </li>
         {{ end }}
         </ul>

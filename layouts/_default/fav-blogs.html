@@ -23,7 +23,7 @@
     <section class="blog-entry">
       <h2>{{ .name }}</h2>
       
-      {{/* Match the slugify logic from the GitHub Action */}}
+      {{/* This creates 'ashishranjan.xml' from 'Ashish Ranjan' */}}
       {{ $slug := .name | lower | replaceRE "[^a-z0-9]" "" }}
       {{ $filename := printf "feeds/%s.xml" $slug }}
       {{ $feed := resources.Get $filename }}

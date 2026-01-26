@@ -34,21 +34,21 @@ jobs:
       - name: Pre-download feeds
         run: |
           mkdir -p assets/feeds
-          # Extract names and urls from your data/favs.json
-          # We use -r to get raw strings and @base64 to handle spaces/special chars safely
-          for row in $(jq -r '.blogs[] | @base64' data/favs.json); do
-            _jq() {
-              echo ${row} | base64 --decode | jq -r ${1}
-            }
-            NAME=$(_jq '.name' | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')
-            URL=$(_jq '.url')
+          # Use Python to parse TOML and output name|url pairs
+          python3 -c '
+          import tomllib
+          with open("data/favs.toml", "rb") as f:
+              data = tomllib.load(f)
+              for blog in data.get("blogs", []):
+                  print(f"{blog[\"name\"]}|{blog[\"url\"]}")
+          ' | while RR= read -r line; do
+            NAME=$(echo "$line" | cut -d'|' -f1 | tr '[:upper:]' '[:lower:]' | tr -dc 'a-z0-9')
+            URL=$(echo "$line" | cut -d'|' -f2)
             
             echo "Fetching $NAME from $URL..."
             
-            # Download the feed. If it fails, it just creates an empty file 
-            # which Hugo will handle gracefully.
             curl -L -s -f -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" \
-              "$URL" -o "assets/feeds/${NAME}.xml" || echo "Failed to download $NAME"
+              "$URL" -o "assets/feeds/${NAME}.xml" || echo "--> Failed to download $NAME"
           done
       - name: Setup Go
         uses: actions/setup-go@v5

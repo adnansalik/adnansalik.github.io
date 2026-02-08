@@ -28,7 +28,7 @@
       {{ $filename := printf "feeds/%s.xml" $slug }}
       {{ $feed := resources.Get $filename }}
 
-      {{ if and $feed (not $feed.Err) }}
+      {{ if and $feed (try (transform.Unmarshal $feed)) }}
         {{ $data := $feed | transform.Unmarshal }}
         {{ $items := $data.entry | default $data.channel.item }}
         <ul class="feed-list">

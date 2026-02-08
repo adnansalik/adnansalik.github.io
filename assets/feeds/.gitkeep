@@ -1,0 +1,3 @@
+# This directory stores cached RSS/Atom feeds
+# They are downloaded by the GitHub Actions workflow
+# and committed to git as fallback when feed downloads fail

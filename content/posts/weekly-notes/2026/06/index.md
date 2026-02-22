@@ -1,5 +1,5 @@
 +++
-title = 'weekly note #6 (2026)'
+title = 'weekly note #06 (2026)'
 summary = "work, food, park and lots of travel"
 date = '2026-02-08T21:38:20+05:30'
 draft = false

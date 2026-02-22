@@ -1,5 +1,5 @@
 +++
-title = 'weekly note #7 (2026)'
+title = 'weekly note #08 (2026)'
 summary = "catching up with friends and ramadan"
 date = '2026-02-22T21:00:00+05:30'
 draft = false

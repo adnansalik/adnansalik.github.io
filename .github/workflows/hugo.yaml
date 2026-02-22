@@ -5,7 +5,7 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: '30 18 * * *' # At 18:30 IST every day
+    - cron: '30 18 * * *'
 permissions:
   contents: read
   pages: write

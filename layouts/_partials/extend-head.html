@@ -1,0 +1,9 @@
+{{- $needsGallery := false -}}
+{{- with .Page -}}
+  {{- if .HasShortcode "gallery" -}}{{- $needsGallery = true -}}{{- end -}}
+{{- end -}}
+{{- if $needsGallery -}}
+  {{- $algorithm := .Site.Params.fingerprintAlgorithm | default "sha256" -}}
+  {{- $js := resources.Get "js/gallery.js" | resources.Minify | resources.Fingerprint $algorithm -}}
+  <script defer type="text/javascript" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{- end }}

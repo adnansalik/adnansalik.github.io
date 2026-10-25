@@ -1,0 +1,202 @@
+/* ------------------------------------------------------------------
+   Image gallery (used by the "gallery" shortcode)
+   ------------------------------------------------------------------ */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+
+.gallery-item {
+  margin: 0;
+  min-width: 0;
+}
+
+.gallery-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: rgba(var(--color-neutral-200), 1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: zoom-in;
+  line-height: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html.dark .gallery-trigger {
+  background: rgba(var(--color-neutral-700), 1);
+}
+
+.gallery-trigger img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 0.5rem;
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+.gallery-trigger:hover img {
+  transform: scale(1.04);
+  opacity: 0.92;
+}
+
+.gallery-trigger:focus-visible {
+  outline: 2px solid rgba(var(--color-primary-500), 1);
+  outline-offset: 2px;
+}
+
+.gallery-item figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: center;
+  color: rgba(var(--color-neutral-500), 1);
+}
+
+html.dark .gallery-item figcaption {
+  color: rgba(var(--color-neutral-400), 1);
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    gap: 0.5rem;
+  }
+
+  .gallery-trigger,
+  .gallery-trigger img {
+    border-radius: 0.375rem;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Lightbox
+   ------------------------------------------------------------------ */
+body.lightbox-open {
+  overflow: hidden;
+}
+
+dialog.lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+dialog.lightbox[open],
+dialog.lightbox.lightbox--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+dialog.lightbox.lightbox--fallback {
+  z-index: 50;
+}
+
+dialog.lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.92);
+}
+
+.lightbox-image {
+  display: block;
+  max-width: min(92vw, 1800px);
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  margin: 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  cursor: default;
+}
+
+.lightbox-button {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.lightbox-button:hover,
+.lightbox-button:focus-visible {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.lightbox-close {
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.9rem;
+}
+
+.lightbox-prev {
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  padding-bottom: 0.15em;
+}
+
+.lightbox-next {
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  padding-bottom: 0.15em;
+}
+
+dialog.lightbox--single .lightbox-prev,
+dialog.lightbox--single .lightbox-next {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .lightbox-image {
+    max-width: 96vw;
+    max-height: 82vh;
+    border-radius: 0.375rem;
+  }
+
+  .lightbox-button {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.4rem;
+  }
+
+  .lightbox-close {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .lightbox-prev {
+    left: 0.35rem;
+  }
+
+  .lightbox-next {
+    right: 0.35rem;
+  }
+}

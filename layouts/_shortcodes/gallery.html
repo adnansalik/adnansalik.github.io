@@ -1,0 +1,57 @@
+{{- /*
+  Renders every image in the page bundle (except cover/feature) as a
+  two-per-row gallery. Clicking an image opens it in a lightbox.
+
+  Optional per-image captions:
+    [[resources]]
+      name = "wedding.jpg"
+      title = "My friend's wedding"
+*/ -}}
+{{- $page := .Page -}}
+{{- $skip := slice "cover" "feature" -}}
+{{- $images := slice -}}
+{{- range $page.Resources.ByType "image" -}}
+  {{- $name := .Name | lower -}}
+  {{- $excluded := false -}}
+  {{- range $skip -}}
+    {{- if hasPrefix $name . -}}{{- $excluded = true -}}{{- end -}}
+  {{- end -}}
+  {{- if not $excluded -}}{{- $images = $images | append . -}}{{- end -}}
+{{- end -}}
+{{- $images = sort $images "Name" -}}
+
+{{- if $images }}
+  <div class="gallery">
+    {{- range $images }}
+      {{- $thumb := . -}}
+      {{- if gt .Width 900 -}}{{- $thumb = .Resize "900x webp q82" -}}{{- end -}}
+      {{- $full := . -}}
+      {{- if gt .Width 1800 -}}{{- $full = .Resize "1800x webp q88" -}}{{- end -}}
+      {{- $caption := .Params.title -}}
+      {{- $alt := or .Params.alt $caption (path.BaseName .Name | humanize) -}}
+      <figure class="gallery-item">
+        <button
+          type="button"
+          class="gallery-trigger"
+          data-src="{{ $full.RelPermalink }}"
+          data-alt="{{ $alt }}"
+          aria-label="View image: {{ $alt }}"
+        >
+          <img
+            src="{{ $thumb.RelPermalink }}"
+            width="{{ $thumb.Width }}"
+            height="{{ $thumb.Height }}"
+            alt="{{ $alt }}"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+        {{- with $caption }}
+          <figcaption>{{ . }}</figcaption>
+        {{- end }}
+      </figure>
+    {{- end }}
+  </div>
+{{- else }}
+  {{- warnf "gallery shortcode: no images found in %s" $page.File.Path -}}
+{{- end }}
